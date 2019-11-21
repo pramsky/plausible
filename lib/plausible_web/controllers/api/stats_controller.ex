@@ -29,7 +29,7 @@ defmodule PlausibleWeb.Api.StatsController do
     site = conn.assigns[:site]
     query = Stats.Query.from(site.timezone, params)
 
-    json(conn, Stats.top_referrers(site, query, params["limit"] || 5))
+    json(conn, Stats.top_referrers(site, query, params["limit"] || 7))
   end
 
 
@@ -71,14 +71,14 @@ defmodule PlausibleWeb.Api.StatsController do
     site = conn.assigns[:site]
     query = Stats.Query.from(site.timezone, params)
 
-    json(conn, Stats.top_pages(site, query, params["limit"] || 5))
+    json(conn, Stats.top_pages(site, query, params["limit"] || 7))
   end
 
   def countries(conn, params) do
     site = conn.assigns[:site]
     query = Stats.Query.from(site.timezone, params)
 
-    json(conn, Stats.countries(site, query, parse_integer(params["limit"]) || 5))
+    json(conn, Stats.countries(site, query))
   end
 
   def browsers(conn, params) do

@@ -36,6 +36,15 @@ class Stats extends React.Component {
     }
   }
 
+  forgotten() {
+    return (
+      <div>
+      <OperatingSystems site={this.props.site} query={this.state.query} />
+      <ScreenSizes site={this.props.site} query={this.state.query} />
+      </div>
+    )
+  }
+
   render() {
     return (
       <div className="mb-12">
@@ -51,12 +60,10 @@ class Stats extends React.Component {
         <div className="w-full block md:flex items-start justify-between mt-6">
           <Referrers site={this.props.site} query={this.state.query} />
           <Pages site={this.props.site} query={this.state.query} />
-          <Countries site={this.props.site} query={this.state.query} />
         </div>
         <div className="w-full block md:flex items-start justify-between mt-6">
+          <Countries site={this.props.site} query={this.state.query} />
           <Browsers site={this.props.site} query={this.state.query} />
-          <OperatingSystems site={this.props.site} query={this.state.query} />
-          <ScreenSizes site={this.props.site} query={this.state.query} />
         </div>
 
         { this.renderConversions() }

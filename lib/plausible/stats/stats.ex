@@ -158,7 +158,7 @@ defmodule Plausible.Stats do
     end)
   end
 
-  def countries(site, query, limit \\ 5) do
+  def countries(site, query) do
      Repo.all(from e in base_query(site, query),
       select: {e.country_code, count(e.user_id, :distinct)},
       group_by: e.country_code,
@@ -166,10 +166,9 @@ defmodule Plausible.Stats do
       order_by: [desc: 2]
     )
     |> Enum.map(fn {country_code, count} ->
-      {Plausible.Stats.CountryName.from_iso3166(country_code), count}
+      {Plausible.Stats.CountryName.to_alpha3(country_code), count}
     end)
     |> add_percentages
-    |> Enum.take(limit)
   end
 
   def browsers(site, query, limit \\ 5) do

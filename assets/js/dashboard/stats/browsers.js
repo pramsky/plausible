@@ -41,22 +41,23 @@ export default class Browsers extends React.Component {
   render() {
     if (this.state.loading) {
       return (
-        <div className="w-full md:w-31percent bg-white shadow-md rounded mt-4 p-4" style={{height: '405px'}}>
-          <div className="loading my-32 mx-auto"><div></div></div>
+        <div className="stats-item">
+          <div className="bg-white shadow-md rounded p-4" style={{height: '424px'}}>
+            <div className="loading my-32 mx-auto"><div></div></div>
+          </div>
         </div>
       )
     } else if (this.state.browsers) {
       return (
-        <div className="w-full md:w-31percent bg-white shadow-md rounded mt-4 p-4" style={{height: '405px'}}>
-          <div className="text-center">
-            <h2>Browsers</h2>
-            <div className="text-grey-darker mt-1">by visitors</div>
-          </div>
+        <div className="stats-item">
+          <div className="bg-white shadow-md rounded p-4" style={{height: '424px'}}>
+            <h3>Devices</h3>
 
-          <div className="mt-8">
-            { this.state.browsers.map(this.renderBrowser.bind(this)) }
+            <div className="mt-8">
+              { this.state.browsers.map(this.renderBrowser.bind(this)) }
+            </div>
+            <MoreLink site={this.props.site} list={this.state.browsers} endpoint="browsers" />
           </div>
-          <MoreLink site={this.props.site} list={this.state.browsers} endpoint="browsers" />
         </div>
       )
     }
